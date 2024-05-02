@@ -5,10 +5,17 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: Roboto, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  /* questo non c'è nella soluzione */
+  /* justify-content: space-between; */
 }
 
 img {
   width: 600px;
+
+  /* margin-bottom: 10px; */
 }
 
 button {
@@ -16,6 +23,8 @@ button {
   border: none;
   border-radius: 8px;
   background: #eee;
+
+  padding: 8px 16px;
 }
 
 input {
@@ -23,4 +32,54 @@ input {
   border-radius: 16px;
   padding: 8px 24px;
   width: 400px;
+
+  /* margin-bottom: 10px; */
 }
+
+.header, .footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.footer {
+  background-color: #eeeeee;
+}
+
+.left-links, .right-links {
+  display: flex;
+  gap: 16px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+.content {
+  /* text-align: center;  */
+  /* perché così va tutto al centro?  [1]*/ 
+  
+
+  /* questo permette al div. content di crescere e occupare tutto lo spazio a disposizione facendo in modo che il footer rimanga "ancorato" in basso */
+  flex: 1 1 0; /* flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
+  /* in questo caso flex-basis 0 va bene poiché sto dicendo al container di partire da una base di 0 height e, con flex-grow: 1 di andare ad estendersi in tutto lo spazio a disposizione che è di 100vh. Nel caso mettessi flex-basis auto il risultato non cambierebbe */
+
+  /*questo mette in pila gli elementi all'interno del container .content e li centra sia orizzontalmente che verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+
+/*
+[1] va tutto al centro perché all'interno del div .content ci sono un immagine e altre due div che contengono elementi inline (input e buttons). se viene applicato text-align center ad un div (nel nostro caso .content) tutti gli elementi inline all'interno del div vengono centrati (quindi l'immagine viene centrata). Inoltre text-align è una proprietà che viene ereditata anche ai div figli di .container e quindi sia il div .buttons, sia il div .input hanno la proprietà text-align: center applicata per cui gli elementi inline al loro interno vengono centrati (rispettivamente l'input form e i due bottoni).
+*/
